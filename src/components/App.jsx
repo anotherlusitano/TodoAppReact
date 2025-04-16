@@ -47,6 +47,11 @@ function App() {
     setInput("");
   }
 
+  // Vai percorrer todos as tarefas e remover a tarefa com o id recebido
+  function deleteTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <main>
       <div className="form-container">
@@ -62,7 +67,7 @@ function App() {
         </form>
 
         {todos.map(({ id, title }) => (
-          <TodoItem id={id} title={title} />
+          <TodoItem id={id} title={title} deleteTodo={() => deleteTodo(id)} />
         ))}
       </div>
     </main>

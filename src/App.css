@@ -39,12 +39,25 @@ input {
 
 .todo-item {
   width: 100%;
-  word-wrap:break-word;
   background-color: #cecece;
 
   margin-block: 5px;
   padding-block: 5px;
-  padding-left: 5px;
+  padding-inline: 5px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-item span {
+  width: 90%;
+  word-wrap:break-word;
 
   font-size: 20px;
+}
+
+.todo-item .delete-todo-btn {
+  background-color: transparent;
+  border: none;
+  align-self: center;
 }
