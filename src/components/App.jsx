@@ -38,14 +38,18 @@ function App() {
     setTodos([
       ...todos,
       {
-        id: todos.length + 1,
+        id: lastId,
         title: input,
         done: false,
       },
     ]);
 
+    setLastId(lastId + 1);
     setInput("");
   }
+
+  // Usamos isto para não ter Ids duplicados
+  const [lastId, setLastId] = useState(4);
 
   // Vai percorrer todos as tarefas e remover a tarefa com o id recebido
   function deleteTodo(id) {
