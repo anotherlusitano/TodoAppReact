@@ -86,6 +86,10 @@ input {
   flex-shrink: 0;
 }
 
+.completa {
+  text-decoration: line-through;
+}
+
 /* ------------- Estilo dos botões ------------- */
 
 .todo-item .delete-todo-btn {

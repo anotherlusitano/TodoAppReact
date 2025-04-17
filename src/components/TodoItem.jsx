@@ -46,7 +46,12 @@ export default function TodoItem(props) {
           checked={props.done}
         />
         {!props.isEditing ? (
-          <span onDoubleClick={props.letsEdit}>{props.title}</span>
+          <span
+            onDoubleClick={props.letsEdit}
+            className={props.done ? "completa" : ""}
+          >
+            {props.title}
+          </span>
         ) : (
           <input
             className="editTodo"
