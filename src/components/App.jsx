@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import TodoItem from "./TodoItem";
+import { TodosContext } from "../context/TodosContext";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -8,16 +9,19 @@ function App() {
       id: 1,
       title: "Comprar algo",
       done: false,
+      isEditing: false,
     },
     {
       id: 2,
       title: "Dormir",
       done: false,
+      isEditing: false,
     },
     {
       id: 3,
       title: "Passear",
       done: false,
+      isEditing: false,
     },
   ]);
 
@@ -41,6 +45,7 @@ function App() {
         id: lastId,
         title: input,
         done: false,
+        isEditing: false,
       },
     ]);
 
@@ -68,6 +73,18 @@ function App() {
     );
   }
 
+  // Vai ativar o modo de edição para o utilizador poder editar a tarefa
+  function letsEdit(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.isEditing = true;
+        }
+        return todo;
+      })
+    );
+  }
+
   return (
     <main>
       <div className="form-container">
@@ -82,15 +99,24 @@ function App() {
           />
         </form>
 
-        {todos.map(({ id, title, done }) => (
-          <TodoItem
-            id={id}
-            title={title}
-            done={done}
-            deleteTodo={() => deleteTodo(id)}
-            markAsDone={() => markAsDone(id)}
-          />
-        ))}
+        <TodosContext.Provider
+          value={{
+            todos,
+            setTodos,
+          }}
+        >
+          {todos.map(({ id, title, done, isEditing }) => (
+            <TodoItem
+              id={id}
+              title={title}
+              done={done}
+              isEditing={isEditing}
+              letsEdit={() => letsEdit(id)}
+              deleteTodo={() => deleteTodo(id)}
+              markAsDone={() => markAsDone(id)}
+            />
+          ))}
+        </TodosContext.Provider>
       </div>
     </main>
   );

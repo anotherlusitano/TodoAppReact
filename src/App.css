@@ -64,6 +64,10 @@ input {
   font-size: 20px;
 }
 
+.todo-item .editTodo {
+  width: 95%;
+}
+
 .todo-item input {
   width: 30px;
   height: 30px;
