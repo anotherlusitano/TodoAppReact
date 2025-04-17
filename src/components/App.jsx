@@ -85,6 +85,25 @@ function App() {
     );
   }
 
+  const [filter, setFilter] = useState("todas");
+
+  // Vai retornar as tarefas que correspondam a um determinado filtro
+  function filteredTodos(filter) {
+    switch (filter) {
+      case "todas":
+        return todos;
+
+      case "por-fazer":
+        return todos.filter((todo) => todo.done === false);
+
+      case "feitas":
+        return todos.filter((todo) => todo.done === true);
+
+      default:
+        return todos;
+    }
+  }
+
   return (
     <main>
       <div className="form-container">
@@ -105,18 +124,28 @@ function App() {
             setTodos,
           }}
         >
-          {todos.map(({ id, title, done, isEditing }) => (
-            <TodoItem
-              id={id}
-              title={title}
-              done={done}
-              isEditing={isEditing}
-              letsEdit={() => letsEdit(id)}
-              deleteTodo={() => deleteTodo(id)}
-              markAsDone={() => markAsDone(id)}
-            />
-          ))}
+          <div className="todos-container">
+            {filteredTodos(filter).map(({ id, title, done, isEditing }) => (
+              <TodoItem
+                id={id}
+                title={title}
+                done={done}
+                isEditing={isEditing}
+                letsEdit={() => letsEdit(id)}
+                deleteTodo={() => deleteTodo(id)}
+                markAsDone={() => markAsDone(id)}
+              />
+            ))}
+          </div>
         </TodosContext.Provider>
+
+        <div className="filter-container">
+          <button onClick={() => setFilter("todas")}>Todas as Tarefas</button>
+          <button onClick={() => setFilter("por-fazer")}>
+            Tarefas por fazer
+          </button>
+          <button onClick={() => setFilter("feitas")}>Tarefas Feitas</button>
+        </div>
       </div>
     </main>
   );
