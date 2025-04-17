@@ -59,7 +59,7 @@ export default function TodoItem(props) {
                 cancelEdit(props.id);
               }
             }}
-            onBlur={(event) => updateTodo(event, props.id)}
+            onBlur={() => cancelEdit(props.id)}
           />
         )}
       </div>
