@@ -104,6 +104,22 @@ function App() {
     }
   }
 
+  // Vai fazer que todas as tarefas fiquem completas
+  function completeTodos() {
+    const updatedTodos = todos.map((todo) => {
+      todo.done = true;
+
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+  }
+
+  // Vai apagar todas as tarefas completas
+  function deleteCompletedTodos() {
+    setTodos([...todos].filter((todo) => !todo.done));
+  }
+
   return (
     <main>
       <div className="form-container">
@@ -140,11 +156,17 @@ function App() {
         </TodosContext.Provider>
 
         <div className="filter-container">
+          <button onClick={completeTodos}>
+            Marcar Tarefas como Concluidas
+          </button>
           <button onClick={() => setFilter("todas")}>Todas as Tarefas</button>
           <button onClick={() => setFilter("por-fazer")}>
             Tarefas por fazer
           </button>
           <button onClick={() => setFilter("feitas")}>Tarefas Feitas</button>
+          <button onClick={deleteCompletedTodos}>
+            Apagar Tarefas Concluidas
+          </button>
         </div>
       </div>
     </main>
