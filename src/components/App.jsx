@@ -2,28 +2,10 @@ import { useState } from "react";
 import "../App.css";
 import TodoItem from "./TodoItem";
 import { TodosContext } from "../context/TodosContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Comprar algo",
-      done: false,
-      isEditing: false,
-    },
-    {
-      id: 2,
-      title: "Dormir",
-      done: false,
-      isEditing: false,
-    },
-    {
-      id: 3,
-      title: "Passear",
-      done: false,
-      isEditing: false,
-    },
-  ]);
+  const [todos, setTodos] = useLocalStorage("tarefas", []);
 
   const [input, setInput] = useState("");
 
@@ -54,7 +36,7 @@ function App() {
   }
 
   // Usamos isto para não ter Ids duplicados
-  const [lastId, setLastId] = useState(4);
+  const [lastId, setLastId] = useLocalStorage("lastId", 1);
 
   // Vai percorrer todos as tarefas e remover a tarefa com o id recebido
   function deleteTodo(id) {
