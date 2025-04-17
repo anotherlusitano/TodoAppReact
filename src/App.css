@@ -37,6 +37,8 @@ input {
   padding-left: 5px;
 }
 
+/* ------------- Estilo das tarefas ------------- */
+
 .todo-item {
   width: 100%;
   background-color: #cecece;
@@ -46,15 +48,31 @@ input {
   padding-inline: 5px;
 
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-.todo-item span {
+.todo-item div {
   width: 90%;
-  word-wrap:break-word;
 
+  display: flex;
+  align-items: center;
+}
+
+.todo-item span {
+  word-break: break-all;
   font-size: 20px;
 }
+
+.todo-item input {
+  width: 30px;
+  height: 30px;
+
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+/* ------------- Estilo dos botões ------------- */
 
 .todo-item .delete-todo-btn {
   background-color: transparent;

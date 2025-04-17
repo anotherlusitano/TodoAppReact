@@ -56,6 +56,18 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  // Marca a tarefa como feita ou por fazer, consoante o estado dela
+  function markAsDone(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.done = !todo.done;
+        }
+        return todo;
+      })
+    );
+  }
+
   return (
     <main>
       <div className="form-container">
@@ -70,8 +82,14 @@ function App() {
           />
         </form>
 
-        {todos.map(({ id, title }) => (
-          <TodoItem id={id} title={title} deleteTodo={() => deleteTodo(id)} />
+        {todos.map(({ id, title, done }) => (
+          <TodoItem
+            id={id}
+            title={title}
+            done={done}
+            deleteTodo={() => deleteTodo(id)}
+            markAsDone={() => markAsDone(id)}
+          />
         ))}
       </div>
     </main>
