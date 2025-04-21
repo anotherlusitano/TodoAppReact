@@ -16,7 +16,9 @@ function App() {
   }
 
   // Adiciona a tarefa quando ela não está vazia
-  function addTodo() {
+  function addTodo(event) {
+    event.preventDefault();
+
     if (input.trim().length === 0) {
       return;
     }
