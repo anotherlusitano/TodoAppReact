@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
-document.title = 'TODO App 👍';
+document.title = 'APP de Tarefas';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

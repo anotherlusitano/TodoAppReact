@@ -51,7 +51,8 @@ input {
 
 .todo-item {
   width: 100%;
-  background-color: #cecece;
+  background-color: aliceblue;
+  border: solid 1px #282c34;
 
   margin-block: 5px;
   padding-block: 5px;
@@ -107,4 +108,27 @@ input {
 
 .filter-container button {
   margin-inline: 5px;
+  padding-block: 5px;
+  border: solid 1px;
+  border-radius: 10px;
+
+  background-color: aliceblue;
+  color: #282c34;
+  cursor: pointer;
+}
+
+.filter-container button:hover {
+  border-width: 2px;
+}
+
+/* ------------- Estilo do input de inserir tarefas ------------- */
+
+form input {
+  background-color: aliceblue;
+  border-color: #282c34;
+  color: #282c34;
+  border-radius: 10px;
+
+  padding: 15px;
+  font-size: 16px;
 }

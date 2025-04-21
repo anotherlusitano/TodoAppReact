@@ -107,7 +107,7 @@ function App() {
   return (
     <main>
       <div className="form-container">
-        <h3>TODO App 👍</h3>
+        <h3>APP de Tarefas</h3>
 
         <form action="#" onSubmit={addTodo}>
           <input
@@ -140,17 +140,11 @@ function App() {
         </TodosContext.Provider>
 
         <div className="filter-container">
-          <button onClick={completeTodos}>
-            Marcar Tarefas como Concluidas
-          </button>
-          <button onClick={() => setFilter("todas")}>Todas as Tarefas</button>
-          <button onClick={() => setFilter("por-fazer")}>
-            Tarefas por fazer
-          </button>
-          <button onClick={() => setFilter("feitas")}>Tarefas Feitas</button>
-          <button onClick={deleteCompletedTodos}>
-            Apagar Tarefas Concluidas
-          </button>
+          <button onClick={completeTodos}>Check All</button>
+          <button onClick={() => setFilter("todas")}>All</button>
+          <button onClick={() => setFilter("por-fazer")}>Active</button>
+          <button onClick={() => setFilter("feitas")}>Completed</button>
+          <button onClick={deleteCompletedTodos}>Clear Completed</button>
         </div>
       </div>
     </main>
