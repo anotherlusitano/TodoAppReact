@@ -41,35 +41,6 @@ function App() {
   // Usamos isto para não ter Ids duplicados
   const [lastId, setLastId] = useLocalStorage("lastId", 1);
 
-  // Vai percorrer todos as tarefas e remover a tarefa com o id recebido
-  function deleteTodo(id) {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  }
-
-  // Marca a tarefa como feita ou por fazer, consoante o estado dela
-  function markAsDone(id) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          todo.done = !todo.done;
-        }
-        return todo;
-      })
-    );
-  }
-
-  // Vai ativar o modo de edição para o utilizador poder editar a tarefa
-  function letsEdit(id) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          todo.isEditing = true;
-        }
-        return todo;
-      })
-    );
-  }
-
   const [filter, setFilter] = useState("todas");
 
   // Vai retornar as tarefas que correspondam a um determinado filtro
@@ -136,9 +107,6 @@ function App() {
                 title={title}
                 done={done}
                 isEditing={isEditing}
-                letsEdit={() => letsEdit(id)}
-                deleteTodo={() => deleteTodo(id)}
-                markAsDone={() => markAsDone(id)}
               />
             ))}
           </div>

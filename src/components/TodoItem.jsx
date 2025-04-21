@@ -36,18 +36,47 @@ export default function TodoItem(props) {
     setTodos(updatedTodos);
   }
 
+  // Vai ativar o modo de edição para o utilizador poder editar a tarefa
+  function letsEdit(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.isEditing = true;
+        }
+        return todo;
+      })
+    );
+  }
+
+  // Vai percorrer todos as tarefas e remover a tarefa com o id recebido
+  function deleteTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
+  // Marca a tarefa como feita ou por fazer, consoante o estado dela
+  function markAsDone(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.done = !todo.done;
+        }
+        return todo;
+      })
+    );
+  }
+
   return (
     <div key={props.id} className="todo-item">
       <div>
         <input
           type="checkbox"
           value={props.id}
-          onChange={props.markAsDone}
+          onChange={() => markAsDone(props.id)}
           checked={props.done}
         />
         {!props.isEditing ? (
           <span
-            onDoubleClick={props.letsEdit}
+            onDoubleClick={() => letsEdit(props.id)}
             className={props.done ? "completa" : ""}
           >
             {props.title}
@@ -68,7 +97,7 @@ export default function TodoItem(props) {
           />
         )}
       </div>
-      <button className="delete-todo-btn" onClick={props.deleteTodo}>
+      <button className="delete-todo-btn" onClick={() => deleteTodo(props.id)}>
         <AiOutlineClose size={20} alignmentBaseline="middle" />
       </button>
     </div>
