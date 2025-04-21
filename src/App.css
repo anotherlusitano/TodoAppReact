@@ -96,6 +96,7 @@ input {
   background-color: transparent;
   border: none;
   align-self: center;
+  cursor: pointer;
 }
 
 .filter-container {
