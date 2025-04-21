@@ -3,6 +3,7 @@ import "../App.css";
 import TodoItem from "./TodoItem";
 import { TodosContext } from "../context/TodosContext";
 import useLocalStorage from "../hooks/useLocalStorage";
+import RemainingItems from "./RemainingItems";
 
 function App() {
   const [todos, setTodos] = useLocalStorage("tarefas", []);
@@ -107,7 +108,11 @@ function App() {
   return (
     <main>
       <div className="form-container">
-        <h3>APP de Tarefas</h3>
+        <div className="header">
+          <h3>APP de Tarefas</h3>
+
+          <RemainingItems tarefasPorFazer={filteredTodos} />
+        </div>
 
         <form action="#" onSubmit={addTodo}>
           <input

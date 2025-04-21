@@ -28,7 +28,14 @@ main {
   border-radius: 20px;
 }
 
-.form-container h3 {
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
   margin-block: 10px;
 }
 
@@ -130,5 +137,9 @@ form input {
   border-radius: 10px;
 
   padding: 15px;
+  font-size: 16px;
+}
+
+.tarefas-em-falta {
   font-size: 16px;
 }
