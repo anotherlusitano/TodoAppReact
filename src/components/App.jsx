@@ -3,12 +3,22 @@ import "../App.css";
 import TodoItem from "./TodoItem";
 import { TodosContext } from "../context/TodosContext";
 import useLocalStorage from "../hooks/useLocalStorage";
+import useToggle from "../hooks/useToggle";
 import RemainingItems from "./RemainingItems";
+import FeatureButton from "./FeatureButton";
 
 function App() {
   const [todos, setTodos] = useLocalStorage("tarefas", []);
 
   const [input, setInput] = useState("");
+
+  // Usamos isto para não ter Ids duplicados
+  const [lastId, setLastId] = useLocalStorage("lastId", 1);
+
+  const [filter, setFilter] = useState("todas");
+
+  const [toggleFeatureOne, setToggleFeatureOne] = useToggle();
+  const [toggleFeatureTwo, setToggleFeatureTwo] = useToggle();
 
   // Função para termos o valor do Input cada vez que o utilizador insere algo
   function handleInput(event) {
@@ -37,11 +47,6 @@ function App() {
     setLastId(lastId + 1);
     setInput("");
   }
-
-  // Usamos isto para não ter Ids duplicados
-  const [lastId, setLastId] = useLocalStorage("lastId", 1);
-
-  const [filter, setFilter] = useState("todas");
 
   // Vai retornar as tarefas que correspondam a um determinado filtro
   function filteredTodos(filter) {
@@ -112,12 +117,44 @@ function App() {
           </div>
         </TodosContext.Provider>
 
-        <div className="filter-container">
-          <button onClick={completeTodos}>Check All</button>
-          <button onClick={() => setFilter("todas")}>All</button>
-          <button onClick={() => setFilter("por-fazer")}>Active</button>
-          <button onClick={() => setFilter("feitas")}>Completed</button>
-          <button onClick={deleteCompletedTodos}>Clear Completed</button>
+        <div className="buttons-container">
+          <button onClick={setToggleFeatureOne}>Features One Toogle</button>
+          <button onClick={setToggleFeatureTwo}>Features Two Toogle</button>
+        </div>
+
+        <hr />
+
+        <div className="buttons-container">
+          <FeatureButton
+            toggleFeature={toggleFeatureTwo}
+            feature={completeTodos}
+          >
+            Check All
+          </FeatureButton>
+          <FeatureButton
+            toggleFeature={toggleFeatureOne}
+            feature={() => setFilter("todas")}
+          >
+            All
+          </FeatureButton>
+          <FeatureButton
+            toggleFeature={toggleFeatureOne}
+            feature={() => setFilter("por-fazer")}
+          >
+            Active
+          </FeatureButton>
+          <FeatureButton
+            toggleFeature={toggleFeatureOne}
+            feature={() => setFilter("feitas")}
+          >
+            Completed
+          </FeatureButton>
+          <FeatureButton
+            toggleFeature={toggleFeatureTwo}
+            feature={deleteCompletedTodos}
+          >
+            Clear Completed
+          </FeatureButton>
         </div>
       </div>
     </main>
